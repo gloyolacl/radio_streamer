@@ -49,8 +49,8 @@ main{
   bottom: 0;
   box-shadow: 0px -1px 5px #868686;
   width: 100%;
-  padding: 1rem;
   z-index: 999;
+  padding: 1rem;
 }
 
 .current-channel{
@@ -144,4 +144,24 @@ main{
   border: 1px solid;
   display: inline-block;
   height: 200px;
+}
+
+.popup-message{
+  background-color: rgb(250, 221, 159);
+  color: white;
+  outline: 1px orange solid;
+  box-shadow: 0px 0px 10px orange;
+  text-shadow:1px 1px 10px rgb(255, 145, 72), 1px 1px 10px rgb(255, 145, 72);
+  font-weight: 700;
+  width: 100%;
+  padding: 10px 0px;
+  border-radius: 0px 0px 5px 5px;
+  text-align: center;
+  z-index: -1;
+  transform: translateY(-100%);  
+  transition: 0.5s;
+}
+
+.popup-message-show{
+  transform: translateY(0);
 }

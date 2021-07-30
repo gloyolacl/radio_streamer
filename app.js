@@ -23,7 +23,7 @@ const stationsData = [
   {
     id: 4,
     name: 'Classic 105',
-    url : 'https://streamingv2.shoutcast.com/classic105fm',
+    url : 'https://streamingv2.shout.com/classic105fm',
     logo: 'https://cdn.webrad.io/images/logos/radio-or-ke/classic-105.png'
   },
 
@@ -58,6 +58,8 @@ const controlButton = document.querySelector('.playBtn');
 
 const currentChannel = document.querySelector('.current-channel');
 
+const popupMessage = document.querySelector('.popup-message');
+
 
 //EVENT LISTENERS
 //DOM Event listner
@@ -80,9 +82,14 @@ document.addEventListener('DOMContentLoaded', ()=>{
 });
 
 //Offline Event listener
-window.addEventListener('offline', (event) => {
-  alert('It appears the connection has been lost');
+window.addEventListener('offline', event => {
+setTimeout(displayPopupMessage, 3000, 'It appears you lost connection');
   });
+
+//Check Offline status
+window.addEventListener('online', e => {
+  setTimeout(removePopupMessage, 3000);
+});
 
 //Stations List event Listner
 stationsList.addEventListener('click',e=>{
@@ -106,12 +113,15 @@ controlButton.addEventListener('click', e =>{
   
 });
 
-
 //FUNCTIONS
 //play stream
 function playStream(){
-  player.play();
-  console.log('There was an error with the connection')
+  player.play()
+    .catch(error=>{
+      displayPopupMessage('Sorry, an error occured in playing the audio');
+      setTimeout(removePopupMessage(), 3000);
+      console.log(error);
+    });
   controlButton.classList.remove('fa-play');
   controlButton.classList.add('fa-pause');
 }
@@ -126,5 +136,17 @@ function pauseStream(){
 //change player channel name
 function setCurrentChannelLabel(id){
   currentChannel.textContent = stationsData[id].name;
+}
+
+function displayPopupMessage(msg){
+  popupMessage.innerHTML = msg;
+  if(!popupMessage.classList.contains('popup-message-show')){
+    popupMessage.classList.add('popup-message-show');
+  }
+
+}
+
+function removePopupMessage(){
+  popupMessage.classList.remove('popup-message-show');
 }
 
