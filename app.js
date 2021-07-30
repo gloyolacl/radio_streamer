@@ -23,7 +23,7 @@ const stationsData = [
   {
     id: 4,
     name: 'Classic 105',
-    url : 'https://streamingv2.shout.com/classic105fm',
+    url : 'https://streamingv2.shoutcast.com/classic105fm',
     logo: 'https://cdn.webrad.io/images/logos/radio-or-ke/classic-105.png'
   },
 
