@@ -93,27 +93,44 @@ window.addEventListener('online', e => {
 
 //Stations List event Listner
 stationsList.addEventListener('click',e=>{
- if(e.target.classList.contains('station-list-item')){
-   const id = e.target.id-1;
-   player.setAttribute('autoplay', 'true');
-   player.src = stationsData[id].url;
-   setCurrentChannelLabel(id);
-   playStream();
- }
+  stationListItemCLicked(e);
+});
+//For smart phones
+stationsList.addEventListener('touchstart',e=>{
+  stationListItemCLicked(e);
 });
 
 //Control Button EventListener
 controlButton.addEventListener('click', e =>{
+  controlBtnCLicked(e);
+});
+//For smart phones
+controlButton.addEventListener('touchstart', e =>{
+  controlBtnCLicked(e);
+});
+
+//FUNCTIONS
+//Station ListItem function (inatiate playing of the radio stream)
+function stationListItemCLicked(e){
+  if(e.target.classList.contains('station-list-item')){
+    const id = e.target.id-1;
+    player.setAttribute('autoplay', 'true');
+    player.src = stationsData[id].url;
+    setCurrentChannelLabel(id);
+    playStream();
+  }
+}
+
+//Control Button Function (Pause or play)
+function controlBtnCLicked(e){
   if(e.target.classList.contains('fa-play')){
     playStream();
   } else if(e.target.classList.contains('fa-pause')) {
     pauseStream();
   }
-  e.preventDefault();
-  
-});
+  e.preventDefault();  
+}
 
-//FUNCTIONS
 //play stream
 function playStream(){
   player.play()

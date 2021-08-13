@@ -44,7 +44,7 @@ main{
   display: flex;
   flex-direction: row;
   align-items: center;
-  justify-content: right;
+  justify-content: center;
   position: fixed;
   bottom: 0;
   box-shadow: 0px -1px 5px #868686;
@@ -73,6 +73,11 @@ main{
   color: var(--fx-light-color);
 }
 
+.live-message{
+  position: absolute;
+  left: 10%;
+}
+
 .live-message,.fa-circle{
   text-shadow:2px 2px 1px rgb(248, 24, 110);
   color: rgb(253, 162, 162);
@@ -93,10 +98,9 @@ main{
 }
 
 .control-container{
+  min-width: max-content;
   background-color: transparent;
   display: flex;
-  margin-right: 50%;
-  margin-left: 30%;
   flex-direction: column;
   align-items: center;
 }
@@ -110,6 +114,7 @@ main{
 .station-list-item{
   background-color: var(--fx-sec-color);
   display: flex;
+  position: relative;
   align-items: center;
   box-shadow: 1px 1px 5px #c8c8c8;
   transition: 0.7s;
